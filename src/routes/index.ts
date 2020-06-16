@@ -9,7 +9,11 @@ const routes: Array<RoutesData> = [
   },
   {
     component: Attendance,
-    path: "/oclock/",
+    path: "/oclock/attendance",
+  },
+  {
+    component: Attendance,
+    path: "/oclock",
   },
   {
     component: Admin,
