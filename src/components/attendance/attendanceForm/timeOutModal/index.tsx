@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import Modal from "../../customComponents/modal";
+import Modal from "../../../customComponents/modal";
 
 interface Props {
   id: string;
