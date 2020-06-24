@@ -4,12 +4,16 @@ import Admin from "../components/admin";
 
 const routes: Array<RoutesData> = [
   {
-    component: Attendance,
-    path: "/oclock/attendance",
-  },
-  {
     component: Admin,
     path: "/oclock/admin",
+  },
+  {
+    component: Attendance,
+    path: "/oclock/",
+  },
+  {
+    component: Attendance,
+    path: "/oclock/attendance",
   },
 ];
 
