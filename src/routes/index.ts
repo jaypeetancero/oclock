@@ -8,16 +8,8 @@ const routes: Array<RoutesData> = [
     path: "/attendance",
   },
   {
-    component: Attendance,
-    path: "/oclock/attendance",
-  },
-  {
-    component: Attendance,
-    path: "/oclock",
-  },
-  {
     component: Admin,
-    path: "/",
+    path: "/admin",
   },
 ];
 
