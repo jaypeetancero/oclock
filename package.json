@@ -1,6 +1,6 @@
 {
   "name": "o-clock-v2",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "homepage": "http://jaypeetancero.github.io/oclock",
   "dependencies": {
