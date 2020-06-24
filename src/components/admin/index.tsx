@@ -1,9 +1,10 @@
 import React from "react";
+import AdminAuthForm from "./adminAuthForm";
 
 const Admin = () => {
   return (
-    <div>
-      <p>This is admin page</p>
+    <div className="h-100 w-100 row align-items-center justify-content-center m-0 p-0 bg-theme-primary">
+      <AdminAuthForm />
     </div>
   );
 };

@@ -17,8 +17,22 @@
   color: transparent;
 }
 
+/* Custom Background Color */
+.bg-theme-primary {
+  background: #fcf79f;
+}
+
+/* Custom Foreground Color */
+.text-primary {
+  color: #82bf65;
+}
+
 .transform-y-100p {
   transform: translateY(-100%);
+}
+
+.custom-form-shadow {
+  box-shadow: #b4d47b 20px 20px 10px 0px;
 }
 
 .custom-attendance-icon {
