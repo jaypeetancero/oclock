@@ -9,7 +9,7 @@ function App() {
   ));
   return (
     <div className="position-absolute h-100 w-100">
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>{routeComponents}</Switch>
       </Router>
     </div>
