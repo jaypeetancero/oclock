@@ -5,7 +5,7 @@ import Admin from "../components/admin";
 const routes: Array<RoutesData> = [
   {
     component: Admin,
-    path: "/admin",
+    path: "/oclock/admin",
   },
   {
     component: Attendance,
@@ -13,7 +13,7 @@ const routes: Array<RoutesData> = [
   },
   {
     component: Attendance,
-    path: "/attendance",
+    path: "/oclock/attendance",
   },
 ];
 
