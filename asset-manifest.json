@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/oclock/static/css/main.b4110d7d.chunk.css",
-    "main.js": "/oclock/static/js/main.3841eb25.chunk.js",
-    "main.js.map": "/oclock/static/js/main.3841eb25.chunk.js.map",
+    "main.js": "/oclock/static/js/main.cc1437b0.chunk.js",
+    "main.js.map": "/oclock/static/js/main.cc1437b0.chunk.js.map",
     "runtime-main.js": "/oclock/static/js/runtime-main.36ffd2df.js",
     "runtime-main.js.map": "/oclock/static/js/runtime-main.36ffd2df.js.map",
     "static/js/2.416e9e38.chunk.js": "/oclock/static/js/2.416e9e38.chunk.js",
     "static/js/2.416e9e38.chunk.js.map": "/oclock/static/js/2.416e9e38.chunk.js.map",
     "index.html": "/oclock/index.html",
-    "precache-manifest.0152804f23dd41467b6aadc1d957a56f.js": "/oclock/precache-manifest.0152804f23dd41467b6aadc1d957a56f.js",
+    "precache-manifest.ac7b1d140ccd277a4fa39e252a21ed3e.js": "/oclock/precache-manifest.ac7b1d140ccd277a4fa39e252a21ed3e.js",
     "service-worker.js": "/oclock/service-worker.js",
     "static/css/main.b4110d7d.chunk.css.map": "/oclock/static/css/main.b4110d7d.chunk.css.map",
     "static/js/2.416e9e38.chunk.js.LICENSE.txt": "/oclock/static/js/2.416e9e38.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.36ffd2df.js",
     "static/js/2.416e9e38.chunk.js",
     "static/css/main.b4110d7d.chunk.css",
-    "static/js/main.3841eb25.chunk.js"
+    "static/js/main.cc1437b0.chunk.js"
   ]
 }
