@@ -2,7 +2,7 @@
   "name": "o-clock-v2",
   "version": "0.1.1",
   "private": true,
-  "homepage": "http://jaypeetancero.github.io/oclock",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -15,7 +15,6 @@
     "@types/yup": "^0.29.3",
     "firebase": "^7.15.4",
     "formik": "^2.1.4",
-    "gh-pages": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
