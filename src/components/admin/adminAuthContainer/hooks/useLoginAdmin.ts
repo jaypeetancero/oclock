@@ -10,7 +10,7 @@ interface Props {
   companyCode?: string;
 }
 
-export const useLoginAdmin = ({ auth, companyCode }: Props) => {
+export const useLoginAdmin = () => {
   const [status, setStatus] = useState("loading");
   const [error, setError] = useState("");
   const [response, setResponse] = useState();
