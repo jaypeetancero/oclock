@@ -6,8 +6,8 @@ interface AuthProps {
 }
 
 interface Props {
-  auth: AuthProps;
-  companyCode: string;
+  auth?: AuthProps;
+  companyCode?: string;
 }
 
 export const useLoginAdmin = ({ auth, companyCode }: Props) => {
