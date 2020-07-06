@@ -1,12 +1,21 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import CompanyCodeForm from "./companyCodeForm";
 import AdminAuthForm from "./adminAuthForm";
-import useLoginAdmin from './hooks/useLoginAdmin';
+import { AdminAuthProps } from "../../../interfaces/adminAuth";
 
 const AdminAuthContainer = () => {
+  const dispatch = useDispatch();
   const [formViewStep, setFormViewStep] = useState(0);
   const [companyCode, setCompanyCode] = useState("");
-  const { status, error, response } = useLoginAdmin();
+
+  const handleLoginSubmit = (formValues: AdminAuthProps) => {
+    formValues.companyCode = companyCode;
+    dispatch({
+      type: "LOGIN",
+      payload: formValues,
+    });
+  };
 
   if (formViewStep === 0)
     return (
@@ -16,7 +25,12 @@ const AdminAuthContainer = () => {
       />
     );
   if (formViewStep === 1)
-    return <AdminAuthForm setFormViewStep={setFormViewStep} />;
+    return (
+      <AdminAuthForm
+        setFormViewStep={setFormViewStep}
+        onSubmit={handleLoginSubmit}
+      />
+    );
   else return null;
 };
 
