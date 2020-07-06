@@ -1,8 +1,9 @@
 import { RoutesData } from "../interfaces/routes";
 import Attendance from "../components/attendance";
 import Admin from "../components/admin";
+import DashboardContainer from "../components/admin/dashboardContainer";
 
-const routes: Array<RoutesData> = [
+export const nonAuthenticatedRoutes: Array<RoutesData> = [
   {
     component: Admin,
     path: "/admin",
@@ -17,4 +18,9 @@ const routes: Array<RoutesData> = [
   },
 ];
 
-export default routes;
+export const authenticatedRoutes: Array<RoutesData> = [
+  {
+    component: DashboardContainer,
+    path: "/",
+  },
+];
