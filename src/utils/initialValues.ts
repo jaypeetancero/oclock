@@ -6,3 +6,8 @@ export const attendanceInitialValues = {
 export const companyCodeInitialValues = {
   companyCode: "",
 };
+
+export const adminAuthInitialValues = {
+  username: "",
+  password: "",
+};
