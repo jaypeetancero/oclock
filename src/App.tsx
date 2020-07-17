@@ -1,11 +1,13 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import { nonAuthenticatedRoutes, authenticatedRoutes } from "./routes";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { StateData } from "./interfaces/reducer";
+import { init } from "./components/admin/actions";
 
 function App() {
+  const dispatch = useDispatch();
   const isAuthenticated: boolean = useSelector(
     (state: StateData) => state.authReducer.isAuthenticated
   );
@@ -22,6 +24,10 @@ function App() {
       )
     );
   }
+
+  useEffect(() => {
+    dispatch(init());
+  }, []);
 
   return (
     <div className="position-absolute h-100 w-100">

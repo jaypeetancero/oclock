@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import CompanyCodeForm from "./companyCodeForm";
 import AdminAuthForm from "./adminAuthForm";
 import { AdminAuthProps } from "../../../interfaces/adminAuth";
+import { loginAdmin } from "../actions";
 
 const AdminAuthContainer = () => {
   const dispatch = useDispatch();
@@ -11,10 +12,7 @@ const AdminAuthContainer = () => {
 
   const handleLoginSubmit = (formValues: AdminAuthProps) => {
     formValues.companyCode = companyCode;
-    dispatch({
-      type: "LOGIN",
-      payload: formValues,
-    });
+    dispatch(loginAdmin(formValues));
   };
 
   if (formViewStep === 0)
