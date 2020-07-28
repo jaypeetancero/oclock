@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import HeaderContainer from "./headerContainer";
 import * as faceapi from "face-api.js";
+import { setTimeout } from "timers";
 
 export const DashboardContainer = () => {
   const [isInitializing, setIsInitializing] = useState(true);
@@ -8,6 +9,8 @@ export const DashboardContainer = () => {
   const videoRef: any = useRef();
   const canvasRef1: any = useRef();
   const canvasRef2: any = useRef();
+  const vidHeight = 240;
+  const vidWidth = 320;
 
   useEffect(() => {
     const loadModels = async () => {
@@ -38,8 +41,8 @@ export const DashboardContainer = () => {
       videoRef.current
     );
     const displaySize = {
-      width: videoRef.current.width,
-      height: videoRef.current.height,
+      width: vidWidth,
+      height: vidHeight,
     };
     faceapi.matchDimensions(canvasRef1.current, displaySize);
     setInterval(async () => {
@@ -47,6 +50,8 @@ export const DashboardContainer = () => {
         setIsInitializing(false);
       }
       setIsCaptured(false);
+      const context = canvasRef2.current.getContext("2d");
+      context.clearRect(0, 0, vidWidth, vidHeight);
       const detections = await faceapi
         .detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions())
         .withFaceExpressions();
@@ -68,14 +73,14 @@ export const DashboardContainer = () => {
   const captureSnapshot = () => {
     var ctx = canvasRef2.current.getContext("2d");
     var img = new Image();
-    ctx.drawImage(videoRef.current, 0, 0, 360, 360);
+    ctx.drawImage(videoRef.current, 0, 0, vidWidth, vidHeight);
     img.src = canvasRef2.current.toDataURL("image/png");
-    img.width = 360;
-    img.height = 360;
+    img.width = vidWidth;
+    img.height = vidHeight;
   };
 
   return (
-    <div className="position-fixed h-100 w-100 bg-theme-primary">
+    <div className="h-100 w-100 bg-theme-primary">
       <span className="h3 d-flex justify-content-center">
         {isInitializing ? "Intitializing" : "Ready Smile"}
       </span>
@@ -83,33 +88,28 @@ export const DashboardContainer = () => {
         <video
           ref={videoRef}
           className="bg-primary"
-          width="360"
-          height="360"
+          width={vidWidth}
+          height={vidHeight}
           muted
           autoPlay
           onPlay={handleVideoPlay}
         />
         <canvas
           ref={canvasRef1}
-          width="360"
-          height="360"
+          width={vidWidth}
+          height={vidHeight}
           className="position-absolute"
         />
       </div>
       <div className="d-flex justify-content-around">
-        <i
-          className={`fas fa-arrow-alt-circle-down fa-3x ${
-            isCaptured && "text-danger"
-          }`}
-        ></i>
+        {isCaptured && (
+          <span className="h3 animate__animated animate__fadeInDown">
+            Captured
+          </span>
+        )}
       </div>
       <div className="d-flex justify-content-around">
-        <canvas
-          ref={canvasRef2}
-          width="360"
-          height="360"
-          className="animate__animated animate__fadeIn animate__delay-2s"
-        />
+        <canvas ref={canvasRef2} width={vidWidth} height={vidHeight} />
       </div>
       {/* <div className="row">
         <div className="col-12 d-flex flex-column">
