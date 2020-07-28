@@ -1,12 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import HeaderContainer from "./headerContainer";
 import * as faceapi from "face-api.js";
 
 export const DashboardContainer = () => {
+  const [isInitializing, setIsInitializing] = useState(true);
+  const [isCaptured, setIsCaptured] = useState(false);
   const videoRef: any = useRef();
+  const canvasRef1: any = useRef();
+  const canvasRef2: any = useRef();
 
   useEffect(() => {
     const loadModels = async () => {
+      setIsInitializing(true);
       const MODEL_URL = process.env.PUBLIC_URL + "/models";
       Promise.all([
         faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
@@ -29,43 +34,83 @@ export const DashboardContainer = () => {
   };
 
   const handleVideoPlay = () => {
-    const canvas: any = faceapi.createCanvasFromMedia(videoRef.current);
-    document.body.append(canvas);
+    canvasRef1.current.innerHTML = faceapi.createCanvasFromMedia(
+      videoRef.current
+    );
     const displaySize = {
       width: videoRef.current.width,
       height: videoRef.current.height,
     };
-    faceapi.matchDimensions(canvas, displaySize);
+    faceapi.matchDimensions(canvasRef1.current, displaySize);
     setInterval(async () => {
+      if (isInitializing) {
+        setIsInitializing(false);
+      }
+      setIsCaptured(false);
       const detections = await faceapi
         .detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions())
-        .withFaceLandmarks()
         .withFaceExpressions();
       const resizedDetections = faceapi.resizeResults(detections, displaySize);
-      canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-      faceapi.draw.drawDetections(canvas, resizedDetections);
-      faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-    faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
-      console.log(detections);
-      if(detections.length > 0){
+      canvasRef1.current
+        .getContext("2d")
+        .clearRect(0, 0, canvasRef1.current.width, canvasRef1.current.height);
+      faceapi.draw.drawFaceExpressions(canvasRef1.current, resizedDetections);
+      if (detections.length > 0) {
         const face1 = detections[0];
-        if(face1.expressions.happy > 0.8){
-          alert("You're smiling boss neth")
+        if (face1.expressions.happy > 0.8) {
+          captureSnapshot();
+          setIsCaptured(true);
         }
       }
-    }, 100);
+    }, 1000);
+  };
+
+  const captureSnapshot = () => {
+    var ctx = canvasRef2.current.getContext("2d");
+    var img = new Image();
+    ctx.drawImage(videoRef.current, 0, 0, 360, 360);
+    img.src = canvasRef2.current.toDataURL("image/png");
+    img.width = 360;
+    img.height = 360;
   };
 
   return (
     <div className="position-fixed h-100 w-100 bg-theme-primary">
-    <video
-              ref={videoRef}
-              width="720"
-              height="560"
-              muted
-              autoPlay
-              onPlay={handleVideoPlay}
-            />
+      <span className="h3 d-flex justify-content-center">
+        {isInitializing ? "Intitializing" : "Ready Smile"}
+      </span>
+      <div className="d-flex justify-content-around">
+        <video
+          ref={videoRef}
+          className="bg-primary"
+          width="360"
+          height="360"
+          muted
+          autoPlay
+          onPlay={handleVideoPlay}
+        />
+        <canvas
+          ref={canvasRef1}
+          width="360"
+          height="360"
+          className="position-absolute"
+        />
+      </div>
+      <div className="d-flex justify-content-around">
+        <i
+          className={`fas fa-arrow-alt-circle-down fa-3x ${
+            isCaptured && "text-danger"
+          }`}
+        ></i>
+      </div>
+      <div className="d-flex justify-content-around">
+        <canvas
+          ref={canvasRef2}
+          width="360"
+          height="360"
+          className="animate__animated animate__fadeIn animate__delay-2s"
+        />
+      </div>
       {/* <div className="row">
         <div className="col-12 d-flex flex-column">
           <HeaderContainer />
